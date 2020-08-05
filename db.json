@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "Adam",
+      "email": "Adam@gmail.com",
+      "password": "password",
+      "role": 0
+    },
+    {
+      "id": "2",
+      "firstName": "eve",
+      "email": "eve@gmail.com",
+      "password": "password",
+      "role": 1
+    }
+  ],
+  "rooms": [
+    {
+      "id": "1",
+      "name": "Apple"
+    },
+    {
+      "id": "2",
+      "name": "Google"
+    },
+    {
+      "id": "3",
+      "name": "Microsoft"
+    }
+  ]
+}
