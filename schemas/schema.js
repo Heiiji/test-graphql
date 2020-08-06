@@ -38,6 +38,17 @@ const UserType = new GraphQLObjectType({
     })
 })
 
+const BookingType = new GraphQLObjectType({
+    name: "Booking",
+    fields: {
+        id: { type: GraphQLString },
+        date: { type: GraphQLString },
+        userId: { type: GraphQLString },
+        roomId: { type: GraphQLString },
+        message: { type: GraphQLString }
+    }
+})
+
 const PropertyType = new GraphQLObjectType({
     name: "property",
     fields: () => ({
@@ -79,18 +90,15 @@ const RoomType = new GraphQLObjectType({
                     return response.data;
                 })
             }
+        },
+        bookings: {
+            type: GraphQLList(BookingType),
+            resolve(parentValue, args) {
+                return axios.get(`http://localhost:3000/booking?roomId=${parentValue.id}`).then(response => {
+                    return response.data;
+                })
+            }
         }
-    }
-})
-
-const BookingType = new GraphQLObjectType({
-    name: "Booking",
-    fields: {
-        id: { type: GraphQLString },
-        date: { type: GraphQLString },
-        userId: { type: GraphQLString },
-        roomId: { type: GraphQLString },
-        message: { type: GraphQLString }
     }
 })
 
@@ -167,6 +175,15 @@ const RootQueryType = new GraphQLObjectType({
             args: {},
             resolve() {
                 return axios.get(`http://localhost:3000/rooms`).then(response => {
+                    return response.data;
+                })
+            }
+        },
+        bookings: {
+            type: GraphQLList(BookingType),
+            args: {},
+            resolve() {
+                return axios.get(`http://localhost:3000/booking`).then(response => {
                     return response.data;
                 })
             }
