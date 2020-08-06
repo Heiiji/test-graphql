@@ -29,7 +29,11 @@
       "description": "an amazing description of property",
       "date": "2020-08-06T09:08:18.706Z",
       "userId": "2",
-      "size": 45
+      "size": 45,
+      "images": [
+        "https://cdn.pixabay.com/photo/2017/06/13/22/43/interior-2400372_960_720.jpg",
+        "https://cdn.pixabay.com/photo/2016/12/30/08/00/kitchen-1940177_960_720.jpg"
+      ]
     },
     {
       "id": "p2",
@@ -37,7 +41,11 @@
       "description": "an amazing description of property",
       "date": "2020-08-06T09:08:18.706Z",
       "userId": "2",
-      "size": 45
+      "size": 45,
+      "images": [
+        "https://cdn.pixabay.com/photo/2018/08/15/20/53/bad-3609070_960_720.jpg",
+        "https://cdn.pixabay.com/photo/2017/06/13/22/42/kitchen-2400367_960_720.jpg"
+      ]
     }
   ],
   "rooms": [
@@ -49,7 +57,10 @@
       "date": "2020-08-06T09:08:18.706Z",
       "propertyId": "p1",
       "price": 600,
-      "active": true
+      "active": true,
+      "images": [
+        "https://cdn.pixabay.com/photo/2015/03/26/09/42/bedroom-690129_960_720.jpg"
+      ]
     },
     {
       "id": "r2",
@@ -59,7 +70,10 @@
       "userId": "2",
       "date": "2020-07-06T09:08:18.706Z",
       "price": 550,
-      "active": false
+      "active": false,
+      "images": [
+        "https://cdn.pixabay.com/photo/2014/08/11/21/40/wall-416062_960_720.jpg"
+      ]
     },
     {
       "id": "r3",
@@ -69,7 +83,10 @@
       "userId": "2",
       "date": "2020-07-06T09:08:18.706Z",
       "price": 800,
-      "active": false
+      "active": false,
+      "images": [
+        "https://cdn.pixabay.com/photo/2017/04/28/22/16/room-2269594_960_720.jpg"
+      ]
     }
   ],
   "booking": [

@@ -58,6 +58,7 @@ const PropertyType = new GraphQLObjectType({
         description: { type: GraphQLString },
         date: { type: GraphQLString },
         size: { type: GraphQLInt },
+        images: { type: GraphQLList(GraphQLString) },
         rooms: {
             type: GraphQLList(RoomType),
             resolve(parentValue) {
@@ -87,6 +88,7 @@ const RoomType = new GraphQLObjectType({
         propertyId: { type: GraphQLString },
         price: { type: GraphQLInt },
         active: { type: GraphQLBoolean },
+        images: { type: GraphQLList(GraphQLString) },
         user: {
             type: UserType,
             resolve(parentValue, args) {
