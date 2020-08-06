@@ -26,7 +26,34 @@ const UserType = new GraphQLObjectType({
                     return response.data;
                 })
             }
+        },
+        properties: {
+            type: GraphQLList(PropertyType),
+            resolve(parentValue, args) {
+                return axios.get(`http://localhost:3000/users/${parentValue.id}/properties`).then(response => {
+                    return response.data;
+                })
+            }
         }
+    })
+})
+
+const PropertyType = new GraphQLObjectType({
+    name: "property",
+    fields: () => ({
+        id: { type: GraphQLString },
+        location: { type: GraphQLString },
+        description: { type: GraphQLString },
+        date: { type: GraphQLString },
+        size: { type: GraphQLInt },
+        user: {
+            type: UserType,
+            resolve(parentValue, args) {
+                return axios.get(`http://localhost:3000/users/${parentValue.userId}`).then(response => {
+                    return response.data;
+                })
+            }
+        },
     })
 })
 
@@ -34,7 +61,6 @@ const RoomType = new GraphQLObjectType({
     name: "Room",
     fields: {
         id: { type: GraphQLString },
-        location: { type: GraphQLString },
         size: { type: GraphQLInt },
         description: { type: GraphQLString },
         date: { type: GraphQLString },
@@ -42,6 +68,14 @@ const RoomType = new GraphQLObjectType({
             type: UserType,
             resolve(parentValue, args) {
                 return axios.get(`http://localhost:3000/users/${parentValue.userId}`).then(response => {
+                    return response.data;
+                })
+            }
+        },
+        property: {
+            type: PropertyType,
+            resolve(parentValue, args) {
+                return axios.get(`http://localhost:3000/properties/${parentValue.propertyId}`).then(response => {
                     return response.data;
                 })
             }

@@ -22,30 +22,48 @@
       "role": 1
     }
   ],
+  "properties": [
+    {
+      "id": "p1",
+      "location": "Paris",
+      "description": "an amazing description of property",
+      "date": "2020-08-06T09:08:18.706Z",
+      "userId": "2",
+      "size": 45
+    },
+    {
+      "id": "p2",
+      "location": "Challans",
+      "description": "an amazing description of property",
+      "date": "2020-08-06T09:08:18.706Z",
+      "userId": "2",
+      "size": 45
+    }
+  ],
   "rooms": [
     {
       "id": "r1",
-      "location": "Paris",
       "size": 10,
       "description": "an amazing description",
       "userId": "2",
-      "date": "2020-08-06T09:08:18.706Z"
+      "date": "2020-08-06T09:08:18.706Z",
+      "propertyId": "p1"
     },
     {
       "id": "r2",
-      "location": "Saint denis",
+      "propertyId": "p1",
       "size": 15,
       "description": "an amazing description",
       "userId": "2",
       "date": "2020-07-06T09:08:18.706Z"
     },
     {
-      "location": "Challans",
-      "size": 29,
-      "description": "ceci est un test",
+      "id": "r2",
+      "propertyId": "p2",
+      "size": 20,
+      "description": "an amazing description",
       "userId": "2",
-      "id": "fLKYyCj",
-      "date": "2020-08-01T09:08:18.706Z"
+      "date": "2020-07-06T09:08:18.706Z"
     }
   ]
 }
