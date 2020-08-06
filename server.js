@@ -29,6 +29,7 @@ server.post('/auth', urlencodedParser, function(req, res) {
         res.status(400).send("Credentials are required")
     } else {
         axios.get(`http://localhost:3000/users?email=${email}`).then(response => {
+            // no hash because it's just for frontend test this API
             let user =response.data[0];
             if (user.password === password) {
                 res.status(200).send(user);
