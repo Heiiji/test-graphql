@@ -13,15 +13,16 @@ const shouldParseRequest = (req) => {
 
 var parseJSON = bodyParser.json();
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
+server.use(cors())
 
 // server.use((req, res, next) => shouldParseRequest(req) ? parseJSON(req, res, next) : next())
 
-server.use("/graphql", cors(), graphqlHTTP({
+server.use("/graphql", graphqlHTTP({
     graphiql: true,
     schema: userSchema
 }))
 
-server.post('/auth', urlencodedParser, function(req, res) {
+server.post('/auth', parseJSON, function(req, res) {
     let email = req.body.email;
     let password = req.body.password;
 
@@ -30,11 +31,15 @@ server.post('/auth', urlencodedParser, function(req, res) {
     } else {
         axios.get(`http://localhost:3000/users?email=${email}`).then(response => {
             // no hash because it's just for frontend test this API
-            let user =response.data[0];
-            if (user.password === password) {
-                res.status(200).send(user);
-            } else {
+            if (response.data.length !== 1) {
                 res.status(403).send("invalid credentials");
+            } else {
+                let user = response.data[0];
+                if (user.password === password) {
+                    res.status(200).send(user);
+                } else {
+                    res.status(403).send("invalid credentials");
+                }
             }
         })
     }
