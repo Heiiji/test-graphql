@@ -47,7 +47,9 @@
       "description": "an amazing description",
       "userId": "2",
       "date": "2020-08-06T09:08:18.706Z",
-      "propertyId": "p1"
+      "propertyId": "p1",
+      "price": 600,
+      "active": true
     },
     {
       "id": "r2",
@@ -55,7 +57,9 @@
       "size": 15,
       "description": "an amazing description",
       "userId": "2",
-      "date": "2020-07-06T09:08:18.706Z"
+      "date": "2020-07-06T09:08:18.706Z",
+      "price": 550,
+      "active": false
     },
     {
       "id": "r3",
@@ -63,7 +67,9 @@
       "size": 20,
       "description": "an amazing description",
       "userId": "2",
-      "date": "2020-07-06T09:08:18.706Z"
+      "date": "2020-07-06T09:08:18.706Z",
+      "price": 800,
+      "active": false
     }
   ],
   "booking": [

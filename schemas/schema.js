@@ -6,7 +6,8 @@ const {
     GraphQLInt,
     GraphQLSchema,
     GraphQLList,
-    GraphQLNonNull
+    GraphQLNonNull,
+    GraphQLBoolean
 } = graphQL;
 
 // passer en fonction fleché permet de resoudre les problemes de dependance car la fonction s'execute apres la compilation et donc UserType est defini
@@ -57,6 +58,14 @@ const PropertyType = new GraphQLObjectType({
         description: { type: GraphQLString },
         date: { type: GraphQLString },
         size: { type: GraphQLInt },
+        rooms: {
+            type: GraphQLList(RoomType),
+            resolve(parentValue) {
+                return axios.get(`http://localhost:3000/rooms?propertyId=${parentValue.id}`).then(response => {
+                    return response.data;
+                })
+            }
+        },
         user: {
             type: UserType,
             resolve(parentValue, args) {
@@ -75,6 +84,9 @@ const RoomType = new GraphQLObjectType({
         size: { type: GraphQLInt },
         description: { type: GraphQLString },
         date: { type: GraphQLString },
+        propertyId: { type: GraphQLString },
+        price: { type: GraphQLInt },
+        active: { type: GraphQLBoolean },
         user: {
             type: UserType,
             resolve(parentValue, args) {
@@ -175,6 +187,15 @@ const RootQueryType = new GraphQLObjectType({
             args: {},
             resolve() {
                 return axios.get(`http://localhost:3000/rooms`).then(response => {
+                    return response.data;
+                })
+            }
+        },
+        properties: {
+            type: GraphQLList(PropertyType),
+            args: { userId: { type: GraphQLString } },
+            resolve(parentValue, args) {
+                return axios.get(`http://localhost:3000/properties?userId=${args.userId}`).then(response => {
                     return response.data;
                 })
             }
