@@ -37,6 +37,7 @@ const RoomType = new GraphQLObjectType({
         location: { type: GraphQLString },
         size: { type: GraphQLInt },
         description: { type: GraphQLString },
+        date: { type: GraphQLString },
         user: {
             type: UserType,
             resolve(parentValue, args) {
@@ -64,7 +65,8 @@ const MutationType = new GraphQLObjectType({
                     location: args.location,
                     size: args.size,
                     description: args.description,
-                    userId: args.userId
+                    userId: args.userId,
+                    Date: new Date()
                 }).then(response => {
                     return response.data;
                 })

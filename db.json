@@ -28,21 +28,24 @@
       "location": "Paris",
       "size": 10,
       "description": "an amazing description",
-      "userId": "2"
+      "userId": "2",
+      "date": "2020-08-06T09:08:18.706Z"
     },
     {
       "id": "r2",
       "location": "Saint denis",
       "size": 15,
       "description": "an amazing description",
-      "userId": "2"
+      "userId": "2",
+      "date": "2020-07-06T09:08:18.706Z"
     },
     {
       "location": "Challans",
       "size": 29,
       "description": "ceci est un test",
       "userId": "2",
-      "id": "fLKYyCj"
+      "id": "fLKYyCj",
+      "date": "2020-08-01T09:08:18.706Z"
     }
   ]
 }
