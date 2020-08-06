@@ -4,21 +4,88 @@ const {
     GraphQLObjectType,
     GraphQLString,
     GraphQLInt,
-    GraphQLSchema
+    GraphQLSchema,
+    GraphQLList,
+    GraphQLNonNull
 } = graphQL;
+
+// passer en fonction fleché permet de resoudre les problemes de dependance car la fonction s'execute apres la compilation et donc UserType est defini
 
 const UserType = new GraphQLObjectType({
     name: "User",
-    fields: {
+    fields: () => ({
         id: { type: GraphQLString },
         firstName: { type: GraphQLString },
         email: { type: GraphQLString },
         password: { type: GraphQLString },
-        role: { type: GraphQLInt }
+        role: { type: GraphQLInt },
+        rooms: {
+            type: GraphQLList(RoomType),
+            resolve(parentValue, args) {
+                return axios.get(`http://localhost:3000/users/${parentValue.id}/rooms`).then(response => {
+                    return response.data;
+                })
+            }
+        }
+    })
+})
+
+const RoomType = new GraphQLObjectType({
+    name: "Room",
+    fields: {
+        id: { type: GraphQLString },
+        location: { type: GraphQLString },
+        size: { type: GraphQLInt },
+        description: { type: GraphQLString },
+        user: {
+            type: UserType,
+            resolve(parentValue, args) {
+                return axios.get(`http://localhost:3000/users/${parentValue.userId}`).then(response => {
+                    return response.data;
+                })
+            }
+        }
     }
 })
 
-const RootQuery = new GraphQLObjectType({
+const MutationType = new GraphQLObjectType({
+    name: "Mutation",
+    fields: {
+        addRoom: {
+            type: RoomType,
+            args: {
+                location: { type: GraphQLNonNull(GraphQLString) },
+                size: { type: GraphQLNonNull(GraphQLInt) },
+                description: { type: GraphQLString },
+                userId: { type: GraphQLNonNull(GraphQLString) }
+            },
+            resolve(parentValue, args) {
+                return axios.post(`http://localhost:3000/rooms`, {
+                    location: args.location,
+                    size: args.size,
+                    description: args.description,
+                    userId: args.userId
+                }).then(response => {
+                    return response.data;
+                })
+            }
+        },
+        deleteRoom: {
+            type: RoomType,
+            args: {
+                id: { type: GraphQLNonNull(GraphQLString) }
+            },
+            resolve(parentValue, args) {
+                return axios.delete(`http://localhost:3000/rooms/${args.id}`).then(response => {
+                    return response.data;
+                })
+            }
+        }
+    }
+})
+
+
+const RootQueryType = new GraphQLObjectType({
     name: "RootQueryType",
     fields: {
         user: {
@@ -29,10 +96,38 @@ const RootQuery = new GraphQLObjectType({
                     return response.data;
                 })
             }
+        },
+        users: {
+            type: GraphQLList(UserType),
+            args: { id: { type: GraphQLString } },
+            resolve(parentValue, args) {
+                return axios.get(`http://localhost:3000/users`).then(response => {
+                    return response.data;
+                })
+            }
+        },
+        room: {
+            type: RoomType,
+            args: { id: { type: GraphQLString } },
+            resolve(parentValue, args) {
+                return axios.get(`http://localhost:3000/rooms/${args.id}`).then(response => {
+                    return response.data;
+                })
+            }
+        },
+        rooms: {
+            type: GraphQLList(RoomType),
+            args: {},
+            resolve() {
+                return axios.get(`http://localhost:3000/rooms`).then(response => {
+                    return response.data;
+                })
+            }
         }
     }
 });
 
 module.exports = new GraphQLSchema({
-    query: RootQuery
+    query: RootQueryType,
+    mutation: MutationType
 })

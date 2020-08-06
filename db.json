@@ -5,28 +5,44 @@
       "firstName": "Adam",
       "email": "Adam@gmail.com",
       "password": "password",
-      "role": 0
+      "role": 1
     },
     {
       "id": "2",
       "firstName": "eve",
       "email": "eve@gmail.com",
       "password": "password",
+      "role": 0
+    },
+    {
+      "id": "3",
+      "firstName": "adrian",
+      "email": "adrian@protonmail.com",
+      "password": "password",
       "role": 1
     }
   ],
   "rooms": [
     {
-      "id": "1",
-      "name": "Apple"
+      "id": "r1",
+      "location": "Paris",
+      "size": 10,
+      "description": "an amazing description",
+      "userId": "2"
     },
     {
-      "id": "2",
-      "name": "Google"
+      "id": "r2",
+      "location": "Saint denis",
+      "size": 15,
+      "description": "an amazing description",
+      "userId": "2"
     },
     {
-      "id": "3",
-      "name": "Microsoft"
+      "location": "Challans",
+      "size": 29,
+      "description": "ceci est un test",
+      "userId": "2",
+      "id": "fLKYyCj"
     }
   ]
 }
