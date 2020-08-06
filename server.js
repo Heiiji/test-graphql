@@ -36,6 +36,7 @@ server.post('/auth', parseJSON, function(req, res) {
             } else {
                 let user = response.data[0];
                 if (user.password === password) {
+                    delete user.password;
                     res.status(200).send(user);
                 } else {
                     res.status(403).send("invalid credentials");
