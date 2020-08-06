@@ -83,6 +83,17 @@ const RoomType = new GraphQLObjectType({
     }
 })
 
+const BookingType = new GraphQLObjectType({
+    name: "Booking",
+    fields: {
+        id: { type: GraphQLString },
+        date: { type: GraphQLString },
+        userId: { type: GraphQLString },
+        roomId: { type: GraphQLString },
+        message: { type: GraphQLString }
+    }
+})
+
 const MutationType = new GraphQLObjectType({
     name: "Mutation",
     fields: {

@@ -65,5 +65,14 @@
       "userId": "2",
       "date": "2020-07-06T09:08:18.706Z"
     }
+  ],
+  "booking": [
+    {
+      "id": "b1",
+      "date": "2020-07-06T09:08:18.706Z",
+      "userId": "1",
+      "roomId": "r2",
+      "message": "Bonjour, je suis un étudiant en Agriculture de champignon et j'ai la bourses pour financer le loyer."
+    }
   ]
 }

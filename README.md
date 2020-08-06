@@ -21,7 +21,7 @@ db test file location : ./db.json
 
 #### db object
 
-Users, Properties and rooms
+Users, Properties, booking and rooms
 
 
 #Express / GraphQl server
