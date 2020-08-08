@@ -19,6 +19,13 @@ npm run start-db
 ````
 db test file location : ./db.json
 
+
+#### default account : 
+ - Adam@gmail.com (simple user)
+ - eve@gmail.com (Landlord)
+ 
+ password: password
+
 #### db object
 
 Users, Properties, booking and rooms
