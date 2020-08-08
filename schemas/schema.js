@@ -44,9 +44,15 @@ const BookingType = new GraphQLObjectType({
     fields: {
         id: { type: GraphQLString },
         date: { type: GraphQLString },
-        userId: { type: GraphQLString },
-        roomId: { type: GraphQLString },
-        message: { type: GraphQLString }
+        message: { type: GraphQLString },
+        user: {
+            type: UserType,
+            resolve(parentValue, args) {
+                return axios.get(`http://localhost:3000/users/${parentValue.userId}`).then(response => {
+                    return response.data;
+                })
+            }
+        },
     }
 })
 
