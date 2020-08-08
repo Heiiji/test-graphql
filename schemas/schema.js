@@ -58,6 +58,7 @@ const PropertyType = new GraphQLObjectType({
         description: { type: GraphQLString },
         date: { type: GraphQLString },
         size: { type: GraphQLInt },
+        address: { type: GraphQLString },
         images: { type: GraphQLList(GraphQLString) },
         rooms: {
             type: GraphQLList(RoomType),
