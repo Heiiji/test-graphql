@@ -150,7 +150,35 @@ const MutationType = new GraphQLObjectType({
                     return response.data;
                 })
             }
-        }
+        },
+        addBook: {
+            type: BookingType,
+            args: {
+                userId: { type: GraphQLNonNull(GraphQLString) },
+                roomId: { type: GraphQLNonNull(GraphQLString) }
+            },
+            resolve(parentValue, args) {
+                return axios.post(`http://localhost:3000/booking`, {
+                    date: new Date(),
+                    userId: args.userId,
+                    roomId: args.roomId,
+                    message: ''
+                }).then(response => {
+                    return response.data;
+                })
+            }
+        },
+        deleteBook: {
+            type: BookingType,
+            args: {
+                id: { type: GraphQLNonNull(GraphQLString) }
+            },
+            resolve(parentValue, args) {
+                return axios.delete(`http://localhost:3000/booking/${args.id}`).then(response => {
+                    return response.data;
+                })
+            }
+        },
     }
 })
 
