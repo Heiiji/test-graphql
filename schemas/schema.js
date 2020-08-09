@@ -99,7 +99,7 @@ const RoomType = new GraphQLObjectType({
         tenant: {
             type: UserType,
             resolve(parentValue, args) {
-                return axios.get(`http://localhost:3000/users/${parentValue.userId}`).then(response => {
+                return axios.get(`http://localhost:3000/users/${parentValue.tenantId}`).then(response => {
                     return response.data;
                 })
             }
