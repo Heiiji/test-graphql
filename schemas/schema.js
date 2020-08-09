@@ -46,6 +46,7 @@ const BookingType = new GraphQLObjectType({
         date: { type: GraphQLString },
         message: { type: GraphQLString },
         roomId: { type: GraphQLString },
+        userId: { type: GraphQLString },
         user: {
             type: UserType,
             resolve(parentValue, args) {
