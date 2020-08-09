@@ -96,6 +96,14 @@ const RoomType = new GraphQLObjectType({
         price: { type: GraphQLInt },
         active: { type: GraphQLBoolean },
         images: { type: GraphQLList(GraphQLString) },
+        tenant: {
+            type: UserType,
+            resolve(parentValue, args) {
+                return axios.get(`http://localhost:3000/users/${parentValue.userId}`).then(response => {
+                    return response.data;
+                })
+            }
+        },
         user: {
             type: UserType,
             resolve(parentValue, args) {
